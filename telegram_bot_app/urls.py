@@ -14,4 +14,6 @@ urlpatterns = [
     path('register/', views.RegisterApiView.as_view()),
     path('login/', views.LoginApiView.as_view()),
     path('logout/', views.LogoutApiView.as_view()),
+    path('public_api/', views.PublicApiView.as_view()),
+    path('private_api/', views.PrivateApiView.as_view()),
 ]

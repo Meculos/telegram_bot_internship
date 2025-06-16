@@ -7,6 +7,7 @@ from .models import User, TelegramUsername
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate, login, logout
+from .tasks import send_welcome_email
 
 # Create your views here.
 class RegisterApiView(APIView):
@@ -34,7 +35,9 @@ class RegisterApiView(APIView):
         if User.objects.filter(email=email).exists():
             return Response({"error": "Email already exists"}, status=status.HTTP_400_BAD_REQUEST)
 
-        User.objects.create_user(username=username, email=email, password=password)
+        user = User.objects.create_user(username=username, email=email, password=password)
+
+        send_welcome_email.delay(user.username, user.email)
         
         return Response({
             "message": "User successfully created",
@@ -61,3 +64,15 @@ class LogoutApiView(APIView):
     def post(self, request):
         logout(request)
         return Response({"message": "Logged out successfully"})
+
+class PublicApiView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        return Response({"message": "This is a public endpoint. No authentication required."}, status=status.HTTP_200_OK)
+    
+class PrivateApiView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        return Response({"message": f"Hello {request.user.username}, you are authenticated!"}, status=status.HTTP_200_OK)
