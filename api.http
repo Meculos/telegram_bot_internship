@@ -1,0 +1,35 @@
+POST http://127.0.0.1:8000/login/ HTTP/1.1 
+Content-Type: application/json
+
+{
+    "username": "acacohort",
+    "password": "prince4444"
+}
+
+###
+POST http://127.0.0.1:8000/register/ HTTP/1.1 
+Content-Type: application/json
+
+{
+    "username": "acacohort",
+    "email": "acacohort3@gmail.com",
+    "password": "prince4444",
+    "confirm_password": "prince4444"
+}
+
+###
+GET http://127.0.0.1:8000/public_api/ HTTP/1.1 
+
+###
+GET http://127.0.0.1:8000/private_api/ HTTP/1.1 
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwMTIyODkzLCJpYXQiOjE3NTAwOTc2OTMsImp0aSI6ImYwZWUzYjIyZGJhYjQ4NjBhMjEyNjE3MTQ0NGMwMzIxIiwidXNlcl9pZCI6N30.1GmSVDIYpiXMDfP4hgvEAYadBukbCFo2dt5lt4A3Q8Q
+
+###
+POST http://127.0.0.1:8000/api/login_token/ HTTP/1.1 
+Content-Type: application/json
+
+{
+    "username": "acacohort",
+    "password": "prince4444"
+}
