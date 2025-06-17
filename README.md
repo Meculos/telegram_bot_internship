@@ -80,7 +80,7 @@ To enable, make sure `drf-spectacular` is installed and added to your URLs in `u
 ### 1. 🔧 Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+git clone https://github.com/Meculos/telegram_bot_internship.git
 cd YOUR_REPO_NAME
 ```
 
